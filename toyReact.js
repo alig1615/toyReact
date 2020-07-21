@@ -15,7 +15,7 @@ class ElementWrapper {
 
 class TextWrapper {
     constructor (type) {
-        this.root = document.createElement(type)
+        this.root = document.createTextNode(type)
     }
     mountTo (parent) {
         parent.appendChild(this.root)
@@ -48,15 +48,15 @@ export let ToyReact = {
         for (let name in attributes) {
             element.setAttribute(name, attributes[name])
         }
-        let insertChildred = (child) => {
+        let insertChildren = (children) => {
             for (let child of children) {
-                if (typeof child === 'Object' && child instanceof Array) {
-                    insertChildred(child)
+                if (typeof child === 'object' && child instanceof Array) {
+                    insertChildren(child)
                 } else {
                     if ( !(child instanceof Component)
                         && !(child instanceof ElementWrapper)
                         && !(child instanceof TextWrapper)  ) {
-                        child = String(Child)
+                        child = String(child)
                     }
                     if (typeof child === 'string') {
                         child = new TextWrapper(child)
@@ -65,7 +65,7 @@ export let ToyReact = {
                 }
             }
         }
-        insertChildred(children)
+        insertChildren(children)
         // debugger;
         return element
     },
