@@ -3,6 +3,7 @@ node_modules/
 /dist/
 /pc/
 /h5/
+/ToyReact/
 package-lock.json
 npm-debug.log*
 yarn-debug.log*
